@@ -1,35 +1,41 @@
 import React from 'react';
 import './style.css';
+import { PromiseProvider } from 'mongoose';
+import DetailDiv from '../DetailDiv';
+import { Link, Route } from 'react-router-dom';
 
 function ProductContent(props) {
   return (
     <>
-      hello world
-      <div className="img-container">
+      <div className="img-container" key={props.key} id={props.id}>
         <img
           alt="no pics yet"
-          src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/1319/1319454_ra.jpg"
+          src={props.imgURL}
+          style={{ height: '125px' }}
         ></img>
       </div>
       <ul>
         <li>
-          <strong>
-            {props.name}Digipower - Quickpod Extreme Monopod - Black
-          </strong>
+          <strong>{props.name}</strong>
         </li>
-        <li> {props.price} $39.99 </li>
+        <li>${props.price} </li>
       </ul>
-      <div className="details-btn">
-        <span onClick={props.onClick} className="card-details">
-          More Details
-        </span>
+      {/* <div className="details-btn">
+        <Link to={`${props.match.url}/details`} role="button">
+          More Details..
+        </Link>{' '}
         <button
           onClick={props.onClick}
           className={`card-btn ${props['data-value']}`}
         >
           Add to Cart
         </button>
-      </div>
+        <Route
+          exact
+          path={`${props.match.url}/details`}
+          component={DetailDiv}
+        />
+      </div> */}
     </>
   );
 }

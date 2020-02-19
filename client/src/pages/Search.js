@@ -5,10 +5,16 @@ import Title from './../components/Title';
 import { Input } from './../components/Form';
 import ProductContent from './../components/ProductContent';
 import API from '../utils';
+import DetailDiv from './../components/DetailDiv';
+import { Link, Route } from 'react-router-dom';
 
-function Search() {
+function Search(props) {
   let [search, setSearch] = useState([]);
   let [results, setResults] = useState([]);
+
+  useEffect(() => {
+    setSearch('');
+  }, []);
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -25,13 +31,13 @@ function Search() {
     console.log('this is the query in the search js', query);
     API.productsAPI
       .queryProducts(query)
-      .then(res => console.log(res))
+      .then(res => setResults(res.data))
       .catch(err => console.log(err));
   }
 
   return (
     <>
-      <Title>Search Products</Title>
+      <Title>Search Products {console.log(results)}</Title>
       <Card>
         <form onSubmit={handleSubmit}>
           <Input
@@ -44,8 +50,55 @@ function Search() {
 
       <Wrapper>
         <Card name="this will be an item">
-          <ProductContent></ProductContent>
+          <ProductContent
+            name="Digipower - Quickpod Extreme Monopod - Black"
+            price="39.99"
+            imgURL="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/1319/1319454_ra.jpg"
+          ></ProductContent>
+          <div className="details-btn">
+            <Link to={`${props.match.url}/details`} role="button">
+              More Details..
+            </Link>{' '}
+            <button
+              onClick={props.onClick}
+              className={`card-btn ${props['data-value']}`}
+            >
+              Add to Cart
+            </button>
+          </div>
+          <Route
+            exact
+            path={`${props.match.url}/details`}
+            component={DetailDiv}
+          />
         </Card>
+        {results.map(result => (
+          <Card>
+            <ProductContent
+              name={result.name}
+              price={result.regularPrice}
+              imgURL={result.largeImage}
+              key={result.id}
+              id={result.id}
+            />
+            <div className="details-btn">
+              <Link to={`${props.match.url}/details`} role="button">
+                More Details..
+              </Link>{' '}
+              <button
+                onClick={props.onClick}
+                className={`card-btn ${props['data-value']}`}
+              >
+                Add to Cart
+              </button>
+            </div>
+            <Route
+              exact
+              path={`${props.match.url}/details`}
+              component={DetailDiv}
+            />
+          </Card>
+        ))}
       </Wrapper>
     </>
   );
