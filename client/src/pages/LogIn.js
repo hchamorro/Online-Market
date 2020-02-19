@@ -3,7 +3,7 @@ import Card from '../components/Card';
 import { Input, FormBtn } from '../components/Form';
 import API from '../utils';
 
-function Signup() {
+function LogIn() {
   const [formInfo, setFormInfo] = useState({});
 
   function handleInputChange(e) {
@@ -17,11 +17,11 @@ function Signup() {
     console.log('ive been clicked!');
     if (formInfo.password && formInfo.email) {
       API.userAPI
-        .createUser({
+        .logInUser({
           password: formInfo.password,
           email: formInfo.email
         })
-        .then(res => console.log('it should be saved'))
+        .then(res => console.log('log in successful'))
         .catch(err => console.log(err));
     }
   }
@@ -30,7 +30,7 @@ function Signup() {
 
   return (
     <div>
-      <Card name="Sign Up">
+      <Card name="Log In">
         <form>
           <Input
             onChange={handleInputChange}
@@ -54,4 +54,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default LogIn;
