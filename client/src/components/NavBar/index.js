@@ -49,14 +49,14 @@ function Navbar() {
           </li>
           <li className="nav-item">
             <Link
-              to="/category"
+              to="/cart"
               className={
-                window.location.pathname === '/category'
+                window.location.pathname === '/cart'
                   ? 'nav-link active'
                   : 'nav-link'
               }
             >
-              Catagory
+              Cart
             </Link>
           </li>
         </ul>

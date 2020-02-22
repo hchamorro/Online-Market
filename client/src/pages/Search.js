@@ -4,7 +4,7 @@ import Wrapper from '../components/Wrapper';
 import Title from './../components/Title';
 import { Input } from './../components/Form';
 import ProductContent from './../components/ProductContent';
-import API from '../utils';
+import API from '../utils/API';
 import DetailDiv from './../components/DetailDiv';
 import { Link, Route } from 'react-router-dom';
 
@@ -78,11 +78,14 @@ function Search(props) {
               name={result.name}
               price={result.regularPrice}
               imgURL={result.largeImage}
-              key={result.id}
+              key={result.productId}
               id={result.id}
             />
             <div className="details-btn">
-              <Link to={`${props.match.url}/details`} role="button">
+              <Link
+                to={`${props.match.url}/details/${result.productId}`}
+                role="button"
+              >
                 More Details..
               </Link>{' '}
               <button
@@ -94,7 +97,7 @@ function Search(props) {
             </div>
             <Route
               exact
-              path={`${props.match.url}/details`}
+              path={`${props.match.url}/details/:id`}
               component={DetailDiv}
             />
           </Card>

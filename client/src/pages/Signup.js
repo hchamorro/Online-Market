@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../components/Card';
 import { Input, FormBtn } from '../components/Form';
-import API from '../utils';
+import API from '../utils/API';
 
 function Signup() {
   const [formInfo, setFormInfo] = useState({});
+
+  useEffect(() => {}, []);
 
   function handleInputChange(e) {
     const { name, value } = e.target;

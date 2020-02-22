@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LogIn from './pages/LogIn';
 import Search from './pages/Search';
 import NavBar from './components/NavBar';
+import ConsumerContext from './utils/Context/UserContext';
+
 function App() {
   return (
     <Router>

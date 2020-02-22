@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function DetailDiv(props) {
   return (
@@ -11,7 +11,7 @@ function DetailDiv(props) {
         lalaksdjfoaiejrofkldjfoaiurekfjadsoifuapwkfadpiufapfj;dpofapof
       </p>
       <Link to="/search" role="button">
-        Learn Less
+        Hide
       </Link>
     </div>
   );

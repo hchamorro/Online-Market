@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.css';
-import { PromiseProvider } from 'mongoose';
 import DetailDiv from '../DetailDiv';
 import { Link, Route } from 'react-router-dom';
 
