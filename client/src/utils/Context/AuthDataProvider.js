@@ -29,7 +29,9 @@ const AuthDataProvider = props => {
 
   const onLogin = newAuthData => setAuthData(newAuthData);
 
-  const authDataValue = useMemo({ ...authData, onLogin, onLogout }, [authData]);
+  const authDataValue = useMemo(() => ({ ...authData, onLogin, onLogout }), [
+    authData
+  ]);
 
   return <AuthDataContext.Provider value={authDataValue} {...props} />;
 };
