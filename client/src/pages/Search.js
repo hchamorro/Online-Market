@@ -7,13 +7,16 @@ import ProductContent from './../components/ProductContent';
 import API from '../utils/API';
 import DetailDiv from './../components/DetailDiv';
 import { Link, Route } from 'react-router-dom';
+import { STATES } from 'mongoose';
 
 function Search(props) {
   let [search, setSearch] = useState([]);
   let [results, setResults] = useState([]);
+  let [showDetails, setShowDetails] = useState();
 
   useEffect(() => {
     setSearch('');
+    setShowDetails('true');
   }, []);
 
   function handleInputChange(e) {
@@ -27,6 +30,12 @@ function Search(props) {
     searchProducts(search.search);
   }
 
+  function handleToggleClick() {
+    alert('hello');
+    if (showDetails) {
+      setShowDetails();
+    }
+  }
   function searchProducts(query) {
     console.log('this is the query in the search js', query);
     API.productsAPI
@@ -56,9 +65,7 @@ function Search(props) {
             imgURL="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/1319/1319454_ra.jpg"
           ></ProductContent>
           <div className="details-btn">
-            <Link to={`${props.match.url}/details`} role="button">
-              More Details..
-            </Link>{' '}
+            <button onClick={handleToggleClick}>More Details..</button>
             <button
               onClick={props.onClick}
               className={`card-btn ${props['data-value']}`}
@@ -66,11 +73,9 @@ function Search(props) {
               Add to Cart
             </button>
           </div>
-          <Route
-            exact
-            path={`${props.match.url}/details`}
-            component={DetailDiv}
-          />
+          <div display={showDetails ? 'Hide' : 'Show'}>
+            hopefully soon details will be here
+          </div>
         </Card>
         {results.map(result => (
           <Card>

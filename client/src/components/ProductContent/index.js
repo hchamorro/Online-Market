@@ -19,22 +19,15 @@ function ProductContent(props) {
         </li>
         <li>${props.price} </li>
       </ul>
-      {/* <div className="details-btn">
-        <Link to={`${props.match.url}/details`} role="button">
-          More Details..
-        </Link>{' '}
+      <div className="details-btn">
+        {/* <button onClick={props.operation}>More Details..</button>{' '}
         <button
           onClick={props.onClick}
           className={`card-btn ${props['data-value']}`}
         >
           Add to Cart
-        </button>
-        <Route
-          exact
-          path={`${props.match.url}/details`}
-          component={DetailDiv}
-        />
-      </div> */}
+        </button> */}
+      </div>
     </>
   );
 }
