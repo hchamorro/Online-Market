@@ -31,7 +31,10 @@ app.use(function(err, req, res, next) {
 });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/reactcms');
+mongoose.connect(
+  process.env.MONGODB_URI ||
+    'mongodb://hannahc:HelloWorld1!@ds113606.mlab.com:13606/heroku_shq50hf0'
+);
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
