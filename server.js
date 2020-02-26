@@ -12,8 +12,6 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Add routes, both API and view
-app.use(routes);
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
@@ -33,7 +31,7 @@ app.use(function(err, req, res, next) {
 // Connect to the Mongo DB
 mongoose.connect(
   process.env.MONGODB_URI ||
-    'mongodb://hannahc:HelloWorld1!@ds113606.mlab.com:13606/heroku_shq50hf0'
+    'mongodb://mongodb://hannahc:HelloWorld1!@ds153980.mlab.com:53980/heroku_h7gjdgph:HelloWorld1!@ds113606.mlab.com:13606/heroku_shq50hf0'
 );
 
 if (process.env.NODE_ENV === 'production') {
@@ -43,6 +41,9 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html')); //relative path
   });
 }
+
+// Add routes, both API and view
+app.use(routes);
 
 // Start the API server
 app.listen(PORT, function() {
